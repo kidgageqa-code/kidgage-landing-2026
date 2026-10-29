@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer';
-import { randomUUID } from 'node:crypto';
+import { getStore } from '@netlify/blobs';
 import { makeRegistrationEmail } from '../../emailTemplate.js';
 
 export const config = { path: '/api/register', method: ['POST'] };
@@ -18,6 +18,26 @@ function phoneDigits(value) {
   return /^[3567]\d{7}$/.test(digits) ? digits : null;
 }
 const categories = new Set(['Sports & Fitness', 'Arts & Creativity', 'Music & Dance', 'STEM & Learning', 'Wellness & Movement', 'Other', '']);
+
+
+// Persistent, site-wide counters. Conditional updates protect against concurrent requests.
+// Parent and Academy sequences are independent and never reset on redeploy.
+async function nextRegistrationNumber(kind) {
+  const store = getStore({ name: 'kidgage-registration-counters', consistency: 'strong' });
+  const key = `sequence-${kind}`;
+  for (let attempt = 0; attempt < 25; attempt++) {
+    const existing = await store.getWithMetadata(key, { type: 'text', consistency: 'strong' });
+    const previous = existing ? Number(existing.data) : 0;
+    if (!Number.isSafeInteger(previous) || previous < 0) throw new Error('Invalid registration counter');
+    const next = previous + 1;
+    const result = await store.set(key, String(next), existing
+      ? { onlyIfMatch: existing.etag }
+      : { onlyIfNew: true });
+    if (result.modified) return `#${String(next).padStart(3, '0')}`;
+    await new Promise(resolve => setTimeout(resolve, 15 + attempt * 12));
+  }
+  throw new Error('Unable to reserve registration number');
+}
 
 export default async (request) => {
   const contentType = request.headers.get('content-type') || '';
@@ -45,9 +65,8 @@ export default async (request) => {
   if (!emailIsValid(email)) return json({ error: 'Enter a valid email address.' }, 400);
   if (!mobile) return json({ error: 'Enter a valid Qatar mobile number.' }, 400);
   const parent = type === 'kidgage-parents';
-  const id = `${parent ? 'PAR' : 'ACA'}-${randomUUID()}`;
   const details = [
-    ['Lead ID', id], ['Registration date (UTC)', new Date().toISOString()],
+    ['Registration date (UTC)', new Date().toISOString()],
     ['Registration type', parent ? 'Parent waitlist' : 'Academy registration'],
   ];
   if (parent) {
@@ -82,6 +101,16 @@ export default async (request) => {
   }
   const port = Number(process.env.SMTP_PORT);
   if (!Number.isInteger(port) || port < 1 || port > 65535) return json({ error: 'SMTP configuration error.' }, 503);
+  // Reserve only after all validation and SMTP configuration checks pass.
+  // Numbers are unique; an SMTP failure after reservation may leave a gap.
+  let registrationNumber;
+  try {
+    registrationNumber = await nextRegistrationNumber(parent ? 'parent' : 'academy');
+  } catch (err) {
+    console.error('Registration counter failed:', err?.message || 'unknown');
+    return json({ error: 'Registration service is temporarily unavailable. Please try again.' }, 503);
+  }
+  details.unshift(['Registration Form No.', registrationNumber]);
   const {subject,text,html} = makeRegistrationEmail({type,details});
   const transport = nodemailer.createTransport({
     host: process.env.SMTP_HOST, port,
@@ -94,7 +123,7 @@ export default async (request) => {
       from: process.env.SMTP_FROM, to: process.env.NOTIFY_EMAIL,
       replyTo: email, subject, text, html,
     });
-    return json({ ok: true, leadId: id });
+    return json({ ok: true, registrationNumber });
   } catch (err) {
     console.error('SMTP registration failed:', err?.code || err?.message || 'unknown');
     return json({ error: 'Registration could not be emailed. Please try again.' }, 503);

@@ -1,5 +1,4 @@
-// Kidgage internal registration notification — SMTP-only, no database.
-// The unique lead reference is used instead of an untracked daily sequence.
+// Kidgage registration notification — SMTP plus persistent Netlify Blobs counter.
 
 const escape = (value) =>
   String(value ?? "").replace(
@@ -46,7 +45,7 @@ const section = (name, rows) => `
 export function makeRegistrationEmail({ type, details }) {
   const parent = type === "kidgage-parents";
   const kind = parent ? "Parent" : "Academy";
-  const leadId = get(details, "Lead ID");
+  const registrationNumber = get(details, "Registration Form No.");
   const received = qatarTime(get(details, "Registration date (UTC)", ""));
   const primaryFields = parent
     ? ["Full name", "Parent type", "Phone", "Email"]
@@ -68,20 +67,24 @@ export function makeRegistrationEmail({ type, details }) {
     [parent ? "Children information" : "Academy information", extras],
     [
       "Submission information",
-      [["Lead reference", leadId], ["Received (Qatar)", received], ...tracking],
+      [
+        ["Registration Form No.", registrationNumber],
+        ["Received (Qatar)", received],
+        ...tracking,
+      ],
     ],
   ];
 
   // Publicly hosted brand asset. Relative /assets/... paths do not work in email.
   // Some email clients block SVG; publishing a PNG at this URL is recommended.
   const logoUrl = "https://kidgage.com/assets/kidgage-logo.svg";
-  const subject = `Kidgage | ${kind} Lead | ${received} Qatar | ${leadId}`;
+  const subject = `Kidgage | ${kind} Registration Form No. ${registrationNumber} | ${received} Qatar`;
   const intro = `A new ${kind.toLowerCase()} registration has arrived.`;
 
   const html = `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${escape(subject)}</title></head>
 <body style="margin:0;padding:0;background:#f8faf6;color:#253d30;font-family:Arial,Helvetica,sans-serif;">
-<div style="display:none;font-size:1px;max-height:0;max-width:0;opacity:0;overflow:hidden;">${escape(intro)} ${escape(received)} Qatar · ${escape(leadId)}</div>
+<div style="display:none;font-size:1px;max-height:0;max-width:0;opacity:0;overflow:hidden;">${escape(intro)} ${escape(received)} Qatar · ${escape(registrationNumber)}</div>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f8faf6;"><tr><td align="center" style="padding:28px 12px;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:620px;background:#ffffff;border:1px solid #e0e8dc;border-radius:18px;">
 <tr><td style="padding:26px 32px;background:#ffffff;border-bottom:3px solid #83a27c;border-radius:18px 18px 0 0;">
@@ -90,13 +93,13 @@ export function makeRegistrationEmail({ type, details }) {
 </td></tr>
 <tr><td style="padding:29px 32px 8px;">
   <span style="display:inline-block;background:#edf3e9;color:#476a4b;border-radius:20px;padding:7px 12px;font-size:10px;font-weight:800;letter-spacing:1.5px;">${parent ? "PARENTS" : "ACADEMIES"}</span>
-  <h1 style="font-size:27px;line-height:35px;margin:16px 0 9px;color:#253d30;">New ${escape(kind)} Lead</h1>
+  <h1 style="font-size:27px;line-height:35px;margin:16px 0 9px;color:#253d30;">New ${escape(kind)} Registration</h1>
   <p style="margin:0 0 17px;color:#738476;font-size:13px;line-height:21px;">${escape(intro)} Reply to this email to contact the registrant.</p>
   <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background:#f0f5ed;border:1px solid #dfe9da;border-radius:12px;">
     <tr><td style="padding:16px 18px;">
       <div style="color:#698669;font-size:10px;letter-spacing:1.5px;font-weight:800;">RECEIVED IN QATAR</div>
       <div style="padding-top:5px;font-weight:800;font-size:19px;line-height:27px;color:#253d30;">${escape(received)}</div>
-      <div style="padding-top:5px;font-size:11px;line-height:17px;color:#708273;overflow-wrap:anywhere;">Reference: ${escape(leadId)}</div>
+      <div style="padding-top:5px;font-size:11px;line-height:17px;color:#708273;overflow-wrap:anywhere;">Registration Form No. ${escape(registrationNumber)}</div>
     </td></tr>
   </table>
 </td></tr>
@@ -104,6 +107,6 @@ export function makeRegistrationEmail({ type, details }) {
 <tr><td style="padding:18px 32px;background:#f4f8f1;border-top:1px solid #e0e8dc;border-radius:0 0 18px 18px;color:#738476;font-size:11px;line-height:18px;">Kidgage · Coming soon in Qatar<br>Internal registration notification. Handle personal information confidentially.</td></tr>
 </table></td></tr></table></body></html>`;
 
-  const text = `KIDGAGE — NEW ${kind.toUpperCase()} LEAD\nReceived (Qatar): ${received}\nReference: ${leadId}\n\n${sections.map(([title, entries]) => `${title.toUpperCase()}\n${entries.map(([key, val]) => `${key}: ${val || "—"}`).join("\n")}`).join("\n\n")}\n\nReply to this email to contact the registrant.`;
+  const text = `KIDGAGE — NEW ${kind.toUpperCase()} REGISTRATION\nReceived (Qatar): ${received}\nRegistration Form No. ${registrationNumber}\n\n${sections.map(([title, entries]) => `${title.toUpperCase()}\n${entries.map(([key, val]) => `${key}: ${val || "—"}`).join("\n")}`).join("\n\n")}\n\nReply to this email to contact the registrant.`;
   return { subject, html, text };
 }
