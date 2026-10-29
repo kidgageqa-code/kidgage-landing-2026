@@ -6,4 +6,3 @@
   from = "/api/register"
   to = "/.netlify/functions/register"
   status = 200
-  force = true
