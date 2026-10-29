@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#F8FAF6">
+  <meta name="description" content="Kidgage is coming to Qatar. Join the waitlist for activities that help little minds explore, move and grow. Academies can register their interest, too.">
+  <meta property="og:title" content="Kidgage | A bigger world awaits little minds">
+  <meta property="og:description" content="Less scrolling. More exploring. Kidgage is coming soon to Qatar. Join the waitlist.">
+  <meta property="og:type" content="website">
+  <title>Kidgage | A bigger world awaits</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <script defer src="/app.js"></script>
+</head>
+<body>
+  <!-- Locally bundled icons; no paid third-party assets or dependencies. -->
+  <svg class="svg-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="icon-family" viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2M17 4a3 3 0 0 1 0 6m.5 4.2A5 5 0 0 1 21 19v1"/></symbol>
+    <symbol id="icon-school" viewBox="0 0 24 24"><path d="M3 21V6l9-4 9 4v15M7 10h2m6 0h2M7 14h2m6 0h2M10 21v-5h4v5M1.5 21h21"/></symbol>
+    <symbol id="icon-play" viewBox="0 0 24 24"><path d="m9 6 10 6-10 6z"/></symbol>
+    <symbol id="icon-bolt" viewBox="0 0 24 24"><path d="m13 2-9 12h7l-1 8 10-12h-7z"/></symbol>
+    <symbol id="icon-star" viewBox="0 0 24 24"><path d="m12 2 2.8 6.8L22 12l-7.2 3.2L12 22l-2.8-6.8L2 12l7.2-3.2z"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24"><path d="m4.5 12.5 5 5 10-11"/></symbol>
+    <symbol id="icon-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="icon-plus" viewBox="0 0 24 24"><path d="M12 4v16M4 12h16"/></symbol>
+    <symbol id="icon-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3m3 0-1 13H7L6 7m4 4v5m4-5v5"/></symbol>
+    <symbol id="icon-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+    <symbol id="icon-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c5 5 5 13 0 18M12 3C7 8 7 16 12 21"/></symbol>
+    <symbol id="icon-phone" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2c0 9 7 16 16 16a2 2 0 0 0 2-2v-3l-5-2-2 2a14 14 0 0 1-6-6l2-2z"/></symbol>
+    <symbol id="icon-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></symbol>
+  </svg>
+  <div class="ambient a1" aria-hidden="true"></div><div class="ambient a2" aria-hidden="true"></div>
+  <div class="site-container">
+    <header class="header">
+      <a class="logo-link" href="/" aria-label="Kidgage home"><img class="logo" src="/assets/kidgage-logo.svg" alt="Kidgage"></a>
+      <div class="header-tools">
+        <span class="launch-status"><span class="status-dot"></span><span data-i18n="comingSoon">COMING SOON IN QATAR</span></span>
+        <div class="lang-switch" role="group" aria-label="Language">
+          <button type="button" id="lang-en" class="lang-button is-active" aria-pressed="true" lang="en">EN</button>
+          <span aria-hidden="true" class="lang-divider"></span>
+          <button type="button" id="lang-ar" class="lang-button" aria-pressed="false" lang="ar">العربية</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="hero" aria-labelledby="main-title">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-line"></span><span data-i18n="eyebrow">FOR CURIOUS LITTLE MINDS</span></div>
+          <h1 id="main-title"><span data-i18n="hero1">A bigger world</span><br><span class="hero-sage" data-i18n="hero2">awaits little minds.</span></h1>
+          <p class="hero-description" data-i18n="heroDesc">Less scrolling. More exploring. Discover activities that help your kids play, learn and grow.</p>
+          <div class="benefits" aria-label="Highlights">
+            <span><svg class="icon"><use href="#icon-check"/></svg><span data-i18n="benefit1">Explore activities</span></span>
+            <span><svg class="icon"><use href="#icon-check"/></svg><span data-i18n="benefit2">Find their spark</span></span>
+            <span><svg class="icon"><use href="#icon-check"/></svg><span data-i18n="benefit3">Grow every day</span></span>
+          </div>
+          <div class="hero-visual" aria-hidden="true">
+            <div class="activity activity-left"><svg class="icon"><use href="#icon-play"/></svg></div>
+            <div class="activity activity-mid"><svg class="icon"><use href="#icon-star"/></svg></div>
+            <div class="activity activity-right"><svg class="icon"><use href="#icon-bolt"/></svg></div>
+            <div class="activity-caption"><span data-i18n="activityCaption">More play. More possibility.</span></div>
+          </div>
+          <div class="hero-note"><span class="note-line"></span><span data-i18n="heroNote">A new way to discover after-school activities in Qatar.</span></div>
+        </div>
+      </section>
+
+      <section class="form-section" id="join" aria-labelledby="form-title">
+        <div class="card">
+          <div class="card-topline"><div class="card-kicker"><span class="kicker-mark"></span><span data-i18n="joinKicker">THE FIRST STEP STARTS HERE</span></div><svg class="star-icon"><use href="#icon-star"/></svg></div>
+          <h2 id="form-title" data-i18n="formTitle">Be first in line.</h2>
+          <p class="form-caption" data-i18n="formDesc">We're nearly ready. Join the list in a few taps.</p>
+          <div class="audience-switch" role="tablist" aria-label="Registration type">
+            <button type="button" id="tab-parent" class="audience-tab is-active" role="tab" aria-selected="true" aria-controls="panel-parent" data-tab="parent"><svg class="icon"><use href="#icon-family"/></svg><span data-i18n="tabParent">I'm a parent</span></button>
+            <button type="button" id="tab-academy" class="audience-tab" role="tab" aria-selected="false" aria-controls="panel-academy" data-tab="academy" tabindex="-1"><svg class="icon"><use href="#icon-school"/></svg><span data-i18n="tabAcademy">I'm an academy</span></button>
+          </div>
+
+          <div id="panel-parent" class="tab-panel" role="tabpanel" aria-labelledby="tab-parent">
+            <!-- These static forms MUST remain in index.html for Netlify Forms deployment detection. -->
+            <form name="kidgage-parents" id="parent-form" method="POST" action="/" data-netlify="true" autocomplete="on" novalidate>
+              <input type="hidden" name="form-name" value="kidgage-parents">
+              <input type="hidden" name="children" id="children-summary" value="">
+              <input type="hidden" name="childCount" id="children-count" value="0">
+              <input type="hidden" name="accessPriority" id="access-priority" value="Standard">
+              <input type="hidden" name="language" value="en"><input type="hidden" name="source" value="">
+              <input type="hidden" name="utmSource" value=""><input type="hidden" name="utmMedium" value=""><input type="hidden" name="utmCampaign" value="">
+              <div class="field"><label for="parent-name"><span data-i18n="nameLabel">Full name</span> <span class="required">*</span></label><input id="parent-name" name="fullName" type="text" autocomplete="name" maxlength="100" placeholder="Your full name" data-i18n-placeholder="namePlaceholder" required></div>
+              <fieldset class="role-field"><legend><span data-i18n="roleLabel">I am a</span> <span class="required">*</span></legend>
+                <div class="choice-row"><label class="choice"><input type="radio" name="parentType" value="Mother" required><span data-i18n="mother">Mother</span></label><label class="choice"><input type="radio" name="parentType" value="Father" required><span data-i18n="father">Father</span></label></div>
+              </fieldset>
+              <div class="field"><label for="parent-phone"><span data-i18n="mobileLabel">Mobile number</span> <span class="required">*</span></label><div class="phone-wrap"><span class="phone-prefix" dir="ltr"><span class="flag" aria-hidden="true">🇶🇦</span> +974</span><input id="parent-phone" name="mobile" type="tel" inputmode="numeric" autocomplete="tel-national" dir="ltr" maxlength="16" placeholder="55 123 456" required></div></div>
+              <div class="field"><label for="parent-email"><span data-i18n="emailLabel">Email address</span> <span class="required">*</span></label><input id="parent-email" name="email" type="email" inputmode="email" autocomplete="email" dir="ltr" maxlength="160" placeholder="you@example.com" required></div>
+              <div class="optional-card" id="kid-optional"><button class="optional-trigger" type="button" id="kids-toggle" aria-expanded="false" aria-controls="kids-body"><span class="optional-plus"><svg class="icon"><use href="#icon-plus"/></svg></span><span class="optional-info"><strong data-i18n="kidsTitle">Tell us about your kids</strong><small data-i18n="kidsSub">Optional · Get priority early access</small></span><svg class="icon disclosure-chevron"><use href="#icon-chevron"/></svg></button>
+                <div class="optional-body" id="kids-body" hidden><div id="kids-list"></div><button type="button" id="add-kid" class="add-kid"><svg class="icon"><use href="#icon-plus"/></svg><span data-i18n="addKid">Add another child</span></button></div>
+              </div>
+              <label class="consent"><input name="consent" type="checkbox" value="yes" required><span><span data-i18n="parentConsent">I agree to receive Kidgage launch updates and confirm I am the parent or guardian of any children listed.</span> <a href="/privacy.html" target="_blank" rel="noopener noreferrer" data-i18n="privacy">Privacy notice</a></span></label>
+              <p class="form-error" role="alert" aria-live="polite"></p>
+              <button type="submit" class="primary-button"><span class="submit-label" data-i18n="parentSubmit">Join the waitlist</span><svg class="icon"><use href="#icon-arrow"/></svg></button>
+              <div class="secure-note"><svg class="icon"><use href="#icon-lock"/></svg><span data-i18n="parentFoot">Free to join. No commitment.</span></div>
+            </form>
+          </div>
+
+          <div id="panel-academy" class="tab-panel" role="tabpanel" aria-labelledby="tab-academy" hidden>
+            <p class="academy-intro" data-i18n="academyDesc">Meet more families. Register your academy and we'll reach out ahead of launch.</p>
+            <form name="kidgage-academies" id="academy-form" method="POST" action="/" data-netlify="true" autocomplete="on" novalidate>
+              <input type="hidden" name="form-name" value="kidgage-academies">
+              <input type="hidden" name="language" value="en"><input type="hidden" name="source" value="">
+              <input type="hidden" name="utmSource" value=""><input type="hidden" name="utmMedium" value=""><input type="hidden" name="utmCampaign" value="">
+              <div class="field"><label for="academy-name"><span data-i18n="academyNameLabel">Academy name</span> <span class="required">*</span></label><input name="academyName" id="academy-name" type="text" maxlength="140" placeholder="Name of your academy" data-i18n-placeholder="academyNamePlaceholder" required></div>
+              <div class="field"><label for="contact-name"><span data-i18n="contactNameLabel">Contact person</span> <span class="required">*</span></label><input name="contactName" id="contact-name" type="text" maxlength="100" autocomplete="name" placeholder="Full name" data-i18n-placeholder="namePlaceholder" required></div>
+              <div class="field"><label for="academy-phone"><span data-i18n="mobileLabel">Mobile number</span> <span class="required">*</span></label><div class="phone-wrap"><span class="phone-prefix" dir="ltr"><span class="flag" aria-hidden="true">🇶🇦</span> +974</span><input name="mobile" id="academy-phone" type="tel" dir="ltr" inputmode="numeric" maxlength="16" autocomplete="tel-national" placeholder="55 123 456" required></div></div>
+              <div class="field"><label for="academy-email"><span data-i18n="emailLabel">Email address</span> <span class="required">*</span></label><input name="email" id="academy-email" type="email" dir="ltr" autocomplete="email" inputmode="email" maxlength="160" placeholder="you@example.com" required></div>
+              <div class="optional-card"><button type="button" class="optional-trigger" id="academy-toggle" aria-controls="academy-body" aria-expanded="false"><span class="optional-plus"><svg class="icon"><use href="#icon-plus"/></svg></span><span class="optional-info"><strong data-i18n="academyExtraTitle">Tell us a little more</strong><small data-i18n="academyExtraSub">Optional · Helps us connect faster</small></span><svg class="icon disclosure-chevron"><use href="#icon-chevron"/></svg></button>
+                <div class="optional-body" id="academy-body" hidden><div class="field"><label for="academy-category" data-i18n="categoryLabel">Activity category</label><select name="category" id="academy-category"><option value="" data-i18n="categoryPlaceholder">Select a category</option><option value="Sports & Fitness" data-i18n="catSports">Sports & Fitness</option><option value="Arts & Creativity" data-i18n="catArt">Arts & Creativity</option><option value="Music & Dance" data-i18n="catMusic">Music & Dance</option><option value="STEM & Learning" data-i18n="catStem">STEM & Learning</option><option value="Other" data-i18n="catOther">Other</option></select></div>
+                <div class="field"><label for="academy-area" data-i18n="areaLabel">Area in Qatar</label><input name="area" id="academy-area" type="text" maxlength="100" placeholder="e.g. Lusail, West Bay" data-i18n-placeholder="areaPlaceholder"></div>
+                <div class="field"><label for="academy-social" data-i18n="socialLabel">Website or Instagram</label><input name="website" id="academy-social" type="text" maxlength="200" dir="ltr" placeholder="@academy or https://" data-i18n-placeholder="socialPlaceholder"></div>
+                </div>
+              </div>
+              <label class="consent"><input name="consent" type="checkbox" value="yes" required><span><span data-i18n="academyConsent">I agree to be contacted about Kidgage academy partnerships.</span> <a href="/privacy.html" target="_blank" rel="noopener noreferrer" data-i18n="privacy">Privacy notice</a></span></label>
+              <p class="form-error" role="alert" aria-live="polite"></p>
+              <button type="submit" class="primary-button"><span class="submit-label" data-i18n="academySubmit">Register your academy</span><svg class="icon"><use href="#icon-arrow"/></svg></button>
+              <div class="secure-note"><svg class="icon"><use href="#icon-lock"/></svg><span data-i18n="academyFoot">No fee. No commitment.</span></div>
+            </form>
+          </div>
+
+          <div class="success-panel" id="success-panel" role="status" aria-live="polite" hidden><div class="success-mark"><svg class="icon"><use href="#icon-check"/></svg></div><h3 data-i18n="successTitle">You're on the list!</h3><p id="success-message" data-i18n="parentSuccess">Thank you for joining. We'll reach out as Kidgage gets closer to launch.</p><button type="button" id="start-again" class="secondary-button" data-i18n="again">Back to registration</button></div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer"><span data-i18n="footer1">Made for little adventures.</span><span>© Kidgage 2026</span></footer>
+  </div>
+</body>
+</html>

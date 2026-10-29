@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="124" viewBox="0 0 560 124" role="img" aria-label="Kidgage">
+<g transform="translate(8 14)"><rect width="94" height="94" rx="23" fill="#263f30"/>
+<g fill="#efaa76" transform="translate(47 47)"><ellipse cy="-22" rx="14" ry="24"/><ellipse cy="22" rx="14" ry="24"/><ellipse cx="-22" rx="24" ry="14"/><ellipse cx="22" rx="24" ry="14"/></g><circle cx="47" cy="47" r="13" fill="#f8faf6"/></g>
+<text x="119" y="84" font-family="Arial, Helvetica, sans-serif" font-size="75" font-weight="700" letter-spacing="-4" fill="#263f30">kidgage</text>
+<circle cx="498" cy="78" r="7" fill="#efaa76"/>
+</svg>
